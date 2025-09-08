@@ -54,3 +54,10 @@ def editar_estudiante(request, id):
             messages.error(request, 'Todos los campos son obligatorios.')
     
     return render(request, 'editar.html', {'estudiante': estudiante_reg})
+
+def eliminar_estudiante(request, id):
+    """Elimina un estudiante existente"""
+    estudiante_reg = get_object_or_404(estudiante, id=id)
+    estudiante_reg.delete()
+    messages.success(request, 'Estudiante eliminado exitosamente.')
+    return redirect('lista_estudiantes')
